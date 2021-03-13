@@ -19,18 +19,32 @@ namespace FunWithAspNetCoreConfiguration
         // * Directory files
         // * In-memory .NET objects
 
+        // There are few types of application configuration:
+        // * Basic - data will be stored in memory. Use Microsoft.Extensions.Configuration namespace.
+        // * JSON - data will be stored in JSON. Use Microsoft.Extensions.Configuration.Json namespace.
+        // * Command line - data will be added via command line. Use Microsoft.Extensions.Configuration.CommandLine namespace.
+        // * Environment variables - Use Microsoft.Extensions.Configuration.EnvironmentVariables namespace.
+        // * Ini - data will be stored in ini format. Use Microsoft.Extensions.Configuration.Ini namespace.
+        // * XML - data will be stored in XML format. Use Microsoft.Extensions.Configuration.Xml namespace.
+
         public IConfiguration AppConfiguration { get; set; }
 
-        public Startup()
+        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             var configBuilder = new ConfigurationBuilder();
 
-            configBuilder.AddInMemoryCollection(new Dictionary<string, string>
-            {
-                { "name", "bill" },
-                { "surname", "gates" }
-            });
+            //// Example #1
+            //configBuilder.AddInMemoryCollection(new Dictionary<string, string>
+            //{
+            //    { "name", "bill" },
+            //    { "surname", "gates" }
+            //});
 
+            //this.AppConfiguration = configBuilder.Build();
+
+            //Example #2
+            configBuilder.SetBasePath(env.ContentRootPath);
+            configBuilder.AddJsonFile("CustomJsonConfig.json");
             this.AppConfiguration = configBuilder.Build();
         }
 
@@ -39,6 +53,10 @@ namespace FunWithAspNetCoreConfiguration
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            // For some reasons we have to add the line of code below If we want to be
+            // able to retrieve values in controllers. It's essential.
+            services.AddSingleton<IConfiguration>(this.AppConfiguration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
