@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using FunWithAspNetCoreConfiguration.Infrastructure;
+using FunWithAspNetCoreConfiguration.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -64,6 +66,10 @@ namespace FunWithAspNetCoreConfiguration
             // For some reasons we have to add the line of code below If we want to be
             // able to retrieve values in controllers. It's essential.
             services.AddSingleton<IConfiguration>(this.AppConfiguration);
+            services.AddSingleton<ILogger, FooLogger>();
+
+            // Example #4
+            services.Configure<LogOptions>(this.AppConfiguration.GetSection("logoptions"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

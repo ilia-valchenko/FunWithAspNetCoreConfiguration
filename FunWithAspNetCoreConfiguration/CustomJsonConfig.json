@@ -14,5 +14,10 @@
       "number": 3000,
       "code": "as"
     }
+  },
+  "logoptions": {
+    "loginfo": false,
+    "logwarning": true,
+    "template": "Log message:"
   }
 }
