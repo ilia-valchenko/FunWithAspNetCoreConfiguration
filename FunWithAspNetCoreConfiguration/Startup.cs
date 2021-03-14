@@ -48,6 +48,11 @@ namespace FunWithAspNetCoreConfiguration
             this.AppConfiguration = configBuilder.Build();
 
             // Example #3 - Retrieve config section
+            // * GetSection(name) - gets IConfiguration object. It represents only one section.
+            // * GetChildren() - gets all the subsections of a current configuration object. The returned result is IConfiguration.
+            // * [key] - the direct call of a value.
+            //this.AppConfiguration.GetSection("fakesection");
+            //string value = this.AppConfiguration["fakeKey"];
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
