@@ -3,9 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace FunWithAspNetCoreConfiguration.Controllers
 {
-    [Route("api/v1/[controller]")]
-    [ApiController]
-    public class PersonController : ControllerBase
+    public class PersonController : BaseController
     {
         private readonly IConfiguration configuration;
 

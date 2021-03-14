@@ -42,10 +42,12 @@ namespace FunWithAspNetCoreConfiguration
 
             //this.AppConfiguration = configBuilder.Build();
 
-            //Example #2
+            // Example #2
             configBuilder.SetBasePath(env.ContentRootPath);
             configBuilder.AddJsonFile("CustomJsonConfig.json");
             this.AppConfiguration = configBuilder.Build();
+
+            // Example #3 - Retrieve config section
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

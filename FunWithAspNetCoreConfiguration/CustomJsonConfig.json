@@ -1,4 +1,18 @@
 {
   "name": "Ilya",
-  "surname": "Valchanka"
+  "surname": "Valchanka",
+  "regionsection": {
+    "usa": {
+      "number": 1000,
+      "code": "us"
+    },
+    "europe": {
+      "number": 2000,
+      "code": "eu"
+    },
+    "asia": {
+      "number": 3000,
+      "code": "as"
+    }
+  }
 }
